@@ -109,7 +109,7 @@ int main()
 	memcpy(remain, "\\dxgkrnl_hook.sys", sizeof("\\dxgkrnl_hook.sys"));
 
 	// "dxgkrnl_hook.sys"
-	printf("[+] 安装驱动服务 %d\n", StartDriverService("C:\\Users\\yafen\\source\\repos\\fps_unlocker\\x64\\Debug\\dxgkrnl_hook.sys"));
+	printf("[+] 安装驱动服务 %d\n", StartDriverService(szPath));
 
 	printf("[+] 正在搜索三国进程...\n");
 

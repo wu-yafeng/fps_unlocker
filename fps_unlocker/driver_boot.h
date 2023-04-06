@@ -18,6 +18,9 @@ int StartDriverService(const char* driverFileName)
 	if (hService != NULL)
 	{
 		DeleteService(hService);
+		CloseServiceHandle(hService);
+
+		hService = NULL;
 	}
 
 	// create if not exists.
@@ -44,7 +47,6 @@ int StartDriverService(const char* driverFileName)
 
 	if (hService == NULL)
 	{
-		CloseServiceHandle(hService);
 
 		return GetLastError();
 	}
@@ -56,9 +58,11 @@ int StartDriverService(const char* driverFileName)
 		// START SERVICE
 		if (StartService(hService, NULL, NULL) == FALSE)
 		{
+			CloseServiceHandle(hService);
 			return GetLastError();
 		}
 	}
+	CloseServiceHandle(hService);
 
 	return NO_ERROR;
 }
